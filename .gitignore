@@ -1,0 +1,50 @@
+# Vivado project files to ignore
+
+# Vivado generated directories
+*.runs/
+*.cache/
+*.hw/
+*.ip_user_files/
+*.sim/
+*.webtalk/
+*.Xil/
+*.jou
+*.log
+*.str
+*.tmp
+*.wdb
+*.xml
+*.backup
+*.data
+*.db
+*.pb
+*.dmp
+*.tcl.history
+
+# Vivado project-specific files
+*.xpr
+*.xsd
+*.ltx
+*.bit
+*.bin
+*.elf
+*.mmi
+*.prj
+*.bgn
+*.rpt
+*.html
+*.csv
+*.xml
+*.json
+
+# Mac system files
+.DS_Store
+
+# User-specific files
+*.swp
+*.swo
+*.bak
+*.orig
+
+# VSCode settings (optional)
+.vscode/
