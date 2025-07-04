@@ -5,7 +5,8 @@ set project "apple_1"
 # set top_module "stopwatch_unit"
 # set top_module "top_ps2_seven_seg"
 # set top_module "transmit_debouncing"
-set top_module "top_uart_seven_seg"
+# set top_module "top_uart_seven_seg"
+set top_module "apple1_core"
 set part xc7a35tcpg236-1
 
 set verilog_dir "${project}.srcs/sources_1/new"
