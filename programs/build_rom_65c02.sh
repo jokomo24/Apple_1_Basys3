@@ -7,36 +7,22 @@ if [ $# -ne 1 ]; then
 fi
 
 BASENAME="$1"
-
 ASM="$HOME/Storage/Dev/Vivado/Apple_I/programs/${BASENAME}.asm"
 BIN="$HOME/Storage/Dev/Vivado/Apple_I/programs/${BASENAME}.bin"
 MEM="$HOME/Storage/Dev/Vivado/Apple_I/programs/${BASENAME}.mem"
 DEST="$HOME/Storage/Dev/Vivado/Apple_I/apple_1/apple_1.srcs/sources_1/new/apple1_rom.mem"
 
-# Check ASM file exists
-if [ ! -f "$ASM" ]; then
-  echo "Error: ASM file '$ASM' not found."
-  exit 1
-fi
+# Assemble
+ca65 $ASM -o "${BASENAME}.o"
+ld65 -C apple1.cfg -o $BIN "${BASENAME}.o"
 
-echo "Assembling $ASM to $BIN..."
-64tass -b -o "$BIN" "$ASM"
+# Convert binary to mem file (one byte per line, hex)
+xxd -p -c 1 $BIN | tr '[:lower:]' '[:upper:]' > $MEM
 
-# Pad the binary to 64K (65536 bytes) if needed
-BIN_SIZE=$(stat -c%s "$BIN" 2>/dev/null || stat -f%z "$BIN")
-if [ "$BIN_SIZE" -lt 65536 ]; then
-  PADDING=$((65536 - BIN_SIZE))
-  echo "Padding $BIN with $PADDING zero bytes..."
-  dd if=/dev/zero bs=1 count=$PADDING 2>/dev/null | cat - "$BIN" > "$BIN.padded"
-  mv "$BIN.padded" "$BIN"
-fi
+echo "Built $MEM from $ASM"
 
-echo "Converting $BIN to $MEM (one byte per line hex)..."
-hexdump -v -e '1/1 "%02x\n"' "$BIN" > "$MEM.tmp"
-
-mv "$MEM.tmp" "$MEM"
-
-echo "Copying $MEM to $DEST..."
+# 4. Copy to Vivado source location
+mkdir -p "$(dirname "$DEST")"
 cp "$MEM" "$DEST"
 
-echo "Build complete."
+echo "Build complete. ROM saved to $DEST"
