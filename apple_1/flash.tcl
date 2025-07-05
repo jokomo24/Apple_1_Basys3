@@ -7,6 +7,7 @@ set project "apple_1"
 # set top_module "transmit_debouncing"
 # set top_module "top_uart_seven_seg"
 set top_module "apple1_core"
+# set top_module "top"
 set bitstream "./${project}.runs/impl_1/${top_module}.bit"
 
 # Check if the bitstream file exists

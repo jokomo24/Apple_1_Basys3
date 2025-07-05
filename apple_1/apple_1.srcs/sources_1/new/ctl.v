@@ -68,6 +68,7 @@ assign do_op = control[30:29];
 assign flag_op = {control[30:29], control[7:0]};
 assign alu_op = {control[31:30], control[14:8]};
 assign reg_op = control[21:15];
+assign ld_m = control[0];  // Use bit 0 for M register load enable
 
 reg [8:0] pc;                           // microcode program counter
 reg [4:0] finish;                       // address of finishing code for current instruction

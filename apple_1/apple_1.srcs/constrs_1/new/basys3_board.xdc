@@ -62,7 +62,7 @@ set_property -dict { PACKAGE_PIN V4   IOSTANDARD LVCMOS33 } [get_ports {an[2]}]
 set_property -dict { PACKAGE_PIN W4   IOSTANDARD LVCMOS33 } [get_ports {an[3]}]
 
 ##Buttons
-# set_property -dict { PACKAGE_PIN U18   IOSTANDARD LVCMOS33 } [get_ports btn1]     ;# btnC
+set_property -dict { PACKAGE_PIN U18   IOSTANDARD LVCMOS33 } [get_ports reset]     ;# btnC
 # set_property -dict { PACKAGE_PIN T18   IOSTANDARD LVCMOS33 } [get_ports transmit] ;# btnU
 # set_property -dict { PACKAGE_PIN W19   IOSTANDARD LVCMOS33 } [get_ports btnL]     ;# btnL
 # set_property -dict { PACKAGE_PIN T17   IOSTANDARD LVCMOS33 } [get_ports btnR]     ;# btnR

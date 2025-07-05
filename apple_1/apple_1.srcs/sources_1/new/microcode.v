@@ -9,7 +9,7 @@ localparam RESET = 9'b111111111;
 
 reg [31:0] rom[0:511];
 
-initial $readmemh( "microcode.hex", rom, 0 );
+initial $readmemh( "microcode.mem", rom, 0 );
 
 always @(posedge clk)
     if( enable )

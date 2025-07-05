@@ -17,6 +17,7 @@ module alu(
     input [8:0] op,         // 9-bit operation select
     input [9:0] flag_op,    // 10-bit flag operation select
     input B,                // BRK flag
+    input ld_m,             // load enable for M register (now input)
     output mask_irq,        // one cycle early I flag notification 
     output [7:0] P,         // flags register
     output reg cond,        // condition code 
@@ -30,7 +31,6 @@ assign P = { N, V, 1'b1, B, D, I, Z, C };
 reg [7:0] M;
 reg CI, SI;
 
-wire ld_m = op[8];
 wire adj_m = op[7];
 
 /*

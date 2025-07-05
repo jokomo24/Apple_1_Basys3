@@ -148,11 +148,13 @@ alu alu(
     .mask_irq(mask_irq),
     .flag_op(flag_op),
     .cond(cond),
-    .OUT(alu_out) );
+    .OUT(alu_out),
+    .ld_m(ld_m) );
 
 /*
  * Control. Generates all control signals.
  */
+wire ld_m;
 ctl ctl( 
     .clk(clk),
     .irq(IRQ),
@@ -166,7 +168,7 @@ ctl ctl(
     .reg_op(reg_op),
     .ab_op(ab_op),
     .do_op(do_op),
-    .ld_m(), // tie off if not needed
+    .ld_m(ld_m),
     .I(mask_irq),
     .D(D),
     .B(B),
